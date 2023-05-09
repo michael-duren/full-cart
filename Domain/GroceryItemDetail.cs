@@ -4,7 +4,7 @@ public class GroceryItemDetail
 {
     public Guid Id { get; set; }
     public int Quantity { get; set; }
-    public bool InCart { get; set; }
+    public Boolean InCart { get; set; }
     public Guid ItemId { get; set; }
     public Guid ListId { get; set; }
 
