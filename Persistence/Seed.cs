@@ -6,7 +6,7 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context)
         {
-            if (context.GroceryLists.Any())
+            if (context.GroceryItems.Any())
             {
                 return;
             }
