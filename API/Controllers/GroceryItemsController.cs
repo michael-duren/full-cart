@@ -8,25 +8,17 @@ namespace API.Controllers
 {
     public class GroceryItemsController : BaseApiController
     {
-        // private readonly DataContext _context;
-
-        // public GroceryItemsController(DataContext context)
-        // {
-        //     _context = context;
-        // }
-
         [HttpGet] // api/groceryitems
         public async Task<ActionResult<List<GroceryItem>>> GetGroceryItems()
         {
-            // return await _context.GroceryItems.ToListAsync();
             return await Mediator.Send(new GetAll.Query());
         }
 
-        [HttpGet("{Id}")] // api/grocerylists/woaief
+        // write a get method that returns a single grocery item
+        [HttpGet("{id}")] // api/groceryitems/woaief
         public async Task<ActionResult<GroceryItem>> GetGroceryItem(Guid id)
         {
             return await Mediator.Send(new GetSingle.Query { Id = id });
-            // return await _context.GroceryItems.FindAsync(id);
         }
 
         [HttpPost]
