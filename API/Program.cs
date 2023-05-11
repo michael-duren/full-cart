@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Persistence;
 using Application;
+using Application.GroceryItems;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("Default"));
 });
 
-builder.Services.AddMediatR(typeof(Application.GroceryItems.GetAll.Handler));
+builder.Services.AddMediatR(typeof(GetAll.Handler));
 
 var app = builder.Build();
 

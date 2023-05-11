@@ -26,6 +26,7 @@ namespace API.Controllers
         public async Task<ActionResult<GroceryItem>> GetGroceryItem(Guid id)
         {
             return await Mediator.Send(new GetSingle.Query { Id = id });
+            // return await _context.GroceryItems.FindAsync(id);
         }
 
         [HttpPost]
