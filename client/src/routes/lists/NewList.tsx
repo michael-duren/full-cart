@@ -20,7 +20,7 @@ export default function NewList() {
   return (
     <>
       <main className="flex flex-col items-center mx-4 justify-center">
-        <div className="flex border-b-2 pb-2 w-full items-center justify-between flex-1">
+        <div className="flex border-b-2 pb-1 w-full items-center justify-between flex-1">
           <h2>New List</h2>
           <div>{dayjs(new Date()).format('LL')}</div>
         </div>
