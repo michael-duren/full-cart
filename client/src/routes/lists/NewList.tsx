@@ -12,6 +12,7 @@ export default function NewList() {
         { name: 'Chicken', price: 10 },
         { name: 'Fruit', price: 10 },
         { name: 'Chips', price: 5 },
+        { name: 'Brown Rice', price: 5 },
       ],
     };
   });
@@ -49,19 +50,19 @@ export default function NewList() {
                         key={item.name}
                         className="flex text-sm items-center justify-between"
                       >
-                        <div className="flex justify-center gap-1 items-center">
-                          <input
-                            type="checkbox"
-                            id={item.name}
-                            name={item.name}
-                            value={item.name}
-                          />
-                          <label className=" flex" htmlFor={item.name}>
-                            {item.name}
-                          </label>
-                          <div>
-                            <div className="text-gray-500">${item.price}</div>
+                        <div className="flex w-full m-2 justify-between gap-1 items-center">
+                          <div className="flex gap-2">
+                            <input
+                              type="checkbox"
+                              id={item.name}
+                              name={item.name}
+                              value={item.name}
+                            />
+                            <label className=" flex" htmlFor={item.name}>
+                              {item.name}
+                            </label>
                           </div>
+                          <div className="text-gray-500">${item.price}</div>
                         </div>
                       </div>
                     );
