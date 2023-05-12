@@ -16,7 +16,10 @@ export default function CategoryColection({
   const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
-    <div key={category} className="flex items-start  flex-col w-full">
+    <div
+      key={category}
+      className="flex items-start border-b-2 pb-2  flex-col w-full"
+    >
       <div className="flex my-2 justify-between items-center w-full">
         <div className="flex space-x-2">
           <div>{<CategoryIcon className="h-8 w-8" />}</div>
