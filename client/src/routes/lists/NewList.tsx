@@ -31,7 +31,7 @@ export default function NewList() {
                 key={category.category}
                 className="flex items-start  flex-col w-full"
               >
-                <div className="flex justify-between items-center w-full">
+                <div className="flex my-2 justify-between items-center w-full">
                   <div className="flex space-x-2">
                     <div>{<category.icon className="h-8 w-8" />}</div>
                     <h3>{category.category}</h3>
