@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CategoryItems } from '../../utils/types';
 import ItemInstance from './ItemInstance';
 import { TbCarrot, TbCarrotOff } from 'react-icons/tb';
+import AddItemModal from '../modals/AddItem';
 
 interface CategoryProps {
   categoryCollection: CategoryItems;
@@ -12,6 +13,7 @@ export default function CategoryColection({
 }: CategoryProps) {
   const { category, CategoryIcon, items } = categoryCollection;
   const [isOpen, setIsOpen] = useState(false);
+  const [openAddItem, setIsOpenAddItem] = useState(false);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -26,7 +28,10 @@ export default function CategoryColection({
           <h3>{category}</h3>
         </div>
         <div className="flex justify-center items-center gap-2">
-          <button className="text-gray-700 hover:text-gray-900">
+          <button
+            onClick={() => setIsOpenAddItem(true)}
+            className="text-gray-700 hover:text-gray-900"
+          >
             <span className="drop-shadow-2xl">+</span>
           </button>
           <button
@@ -46,6 +51,7 @@ export default function CategoryColection({
             })}
         </div>
       )}
+      <AddItemModal isOpen={openAddItem} setIsOpen={setIsOpenAddItem} />
     </div>
   );
 }

@@ -5,8 +5,10 @@ export default function NavBar() {
     <header className="flex mb-10 justify-between ">
       <h1 className="text-lg">
         <div>
-          <span className="font-serif text-geraldine">full</span>
-          <span className="font-serif text-h-pink">Cart</span>
+          <a href={'/'}>
+            <span className="font-serif text-geraldine">full</span>
+            <span className="font-serif text-h-pink">Cart</span>
+          </a>
         </div>
       </h1>
       <div>
