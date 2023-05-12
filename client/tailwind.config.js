@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'geraldine': '#f99b7d',
+        geraldine: '#f99b7d',
         'geraldine-light': '#f9b7a1',
         'geraldine-dark': '#f97d5f',
-        'mandy': '#e76161',
+        mandy: '#e76161',
         'mandy-light': '#e77d7d',
         'mandy-dark': '#e73d3d',
         'h-pink': '#b04759',
@@ -17,10 +17,12 @@ export default {
         'del-purple': '#ac8b8d',
       },
       fontFamily: {
-        'sans': ['"Open Sans"', 'sans-serif'],
-        'serif': ['"Bitter"', 'serif'],
-      }
+        sans: ['"Open Sans"', 'sans-serif'],
+        serif: ['"Bitter"', 'serif'],
+      },
     },
   },
   plugins: [],
 };
+
+// default text color for text-gray-800

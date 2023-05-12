@@ -2,7 +2,7 @@ import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 
 export default function NavBar() {
   return (
-    <header className="flex justify-between ">
+    <header className="flex mb-10 justify-between ">
       <h1 className="text-lg">
         <div>
           <span className="font-serif text-geraldine">full</span>

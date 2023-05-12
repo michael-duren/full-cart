@@ -1,6 +1,7 @@
-import { ReactComponent as UserIcon } from '../assets/icons/person.svg';
-import { ReactComponent as Exit } from '../assets/icons/exit.svg';
-import { ReactComponent as SettingIcon } from '../assets/icons/setting.svg';
+import { ReactComponent as UserIcon } from '../../assets/icons/person.svg';
+import { ReactComponent as Exit } from '../../assets/icons/exit.svg';
+import { ReactComponent as SettingIcon } from '../../assets/icons/setting.svg';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -26,7 +27,7 @@ export default function Home() {
         {/* button below */}
         <div className="flex items-center justify-center">
           <button className="w-20 h-20 absolute bottom-10  text-white shadow-lg cursor-pointer text-2xl rounded-full bg-geraldine">
-            +
+            <Link to={'newlist'}>+</Link>
           </button>
         </div>
       </main>
