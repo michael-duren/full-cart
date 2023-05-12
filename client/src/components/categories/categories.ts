@@ -8,8 +8,9 @@ import { ReactComponent as Snacks } from '../../assets/icons/categories/snacks.s
 import { ReactComponent as Spices } from '../../assets/icons/categories/spices.svg';
 import { ReactComponent as Condiments } from '../../assets/icons/categories/condiments.svg';
 import { ReactComponent as Household } from '../../assets/icons/categories/household.svg';
+import { CategoryItems } from '../../utils/types';
 
-const categories = [
+const categories: CategoryItems[] = [
   { category: 'Veggies', CategoryIcon: Veggies },
   { category: 'Fruits', CategoryIcon: Fruits },
   { category: 'Dairy', CategoryIcon: Dairy },
