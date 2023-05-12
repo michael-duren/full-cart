@@ -1,10 +1,10 @@
 import { Item } from '../../utils/types';
 
 interface ItemProps {
-  item: any;
+  item: Item;
 }
 
-export default function Item({ item }: ItemProps) {
+export default function ItemInstance({ item }: ItemProps) {
   return (
     <div key={item.name} className="flex text-sm items-center justify-between">
       <div className="flex w-full m-2 justify-between gap-1 items-center">

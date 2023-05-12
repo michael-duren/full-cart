@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import categories from '../../components/categories/categories';
-import CategoryColection from '../../components/categories/Category';
+import CategoryColection from '../../components/categories/CategoryCollection';
 import { CategoryItems } from '../../utils/types';
 
 export default function NewList() {
