@@ -7,11 +7,11 @@ export default function Home() {
     <>
       <main className="flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-4">
-          <UserIcon className="h-20 w-20 mt-16 mb-8" />
+          <UserIcon className="h-20 w-20 fill-cascade-blue mt-16 mb-8" />
           <h2 className="font-serif font-medium text-2xl">Michael Duren</h2>
           <div className="flex gap-4">
-            <Exit className="h-10 w-10" />
-            <SettingIcon className="h-10 w-10" />
+            <Exit className="h-10 w-10 fill-mandy hover:fill-mandy-dark" />
+            <SettingIcon className="h-10 w-10 stroke-h-pink hover:stroke-h-pink-dark" />
           </div>
         </div>
         {/* lists */}

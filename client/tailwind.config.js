@@ -11,6 +11,8 @@ export default {
         'mandy-light': '#e77d7d',
         'mandy-dark': '#e73d3d',
         'h-pink': '#b04759',
+        'h-pink-light': '#b05f6f',
+        'h-pink-dark': '#b02f45',
         'cascade-blue': '#8bacaa',
         'del-purple': '#ac8b8d',
       },
