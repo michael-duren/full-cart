@@ -10,16 +10,16 @@ import { ReactComponent as Condiments } from '../../assets/icons/categories/cond
 import { ReactComponent as Household } from '../../assets/icons/categories/household.svg';
 
 const categories = [
-  { category: 'Veggies', icon: Veggies },
-  { category: 'Fruits', icon: Fruits },
-  { category: 'Dairy', icon: Dairy },
-  { category: 'Meat', icon: Meat },
-  { category: 'Starches', icon: Starches },
-  { category: 'Snacks', icon: Snacks },
-  { category: 'Beverages', icon: Beverages },
-  { category: 'Spices', icon: Spices },
-  { category: 'Condiments', icon: Condiments },
-  { category: 'Household', icon: Household },
+  { category: 'Veggies', CategoryIcon: Veggies },
+  { category: 'Fruits', CategoryIcon: Fruits },
+  { category: 'Dairy', CategoryIcon: Dairy },
+  { category: 'Meat', CategoryIcon: Meat },
+  { category: 'Starches', CategoryIcon: Starches },
+  { category: 'Snacks', CategoryIcon: Snacks },
+  { category: 'Beverages', CategoryIcon: Beverages },
+  { category: 'Spices', CategoryIcon: Spices },
+  { category: 'Condiments', CategoryIcon: Condiments },
+  { category: 'Household', CategoryIcon: Household },
 ];
 
 export default categories;
