@@ -1,6 +1,0 @@
-{
-  "devDependencies": {
-    "@svgr/cli": "^8.0.1",
-    "@svgr/plugin-svgo": "^8.0.1"
-  }
-}
