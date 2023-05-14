@@ -3,6 +3,7 @@ import { CategoryItems } from '../../utils/types';
 import ItemInstance from './ItemInstance';
 import { TbCarrot, TbCarrotOff } from 'react-icons/tb';
 import AddItemModal from '../modals/AddItem';
+import { v4 as uuid } from 'uuid';
 
 interface CategoryProps {
   categoryCollection: CategoryItems;
@@ -19,7 +20,7 @@ export default function CategoryColection({
 
   return (
     <div
-      key={category}
+      key={uuid()}
       className="flex items-start border-b-2 pb-2  flex-col w-full"
     >
       <div className="flex my-2 justify-between items-center w-full">
@@ -47,7 +48,7 @@ export default function CategoryColection({
         <div className="grid grid-cols-2 border-2 rounded-md p-2 my-2 w-full">
           {items &&
             items.map((item) => {
-              return <ItemInstance item={item} />;
+              return <ItemInstance key={item.name} item={item} />;
             })}
         </div>
       )}

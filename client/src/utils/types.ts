@@ -33,3 +33,7 @@ export interface CategoryItems {
   >;
   items?: Item[];
 }
+
+export interface GroceryList {
+  items: CategoryItems[];
+}

@@ -26,9 +26,10 @@ export default function NewList() {
           <div>{dayjs(new Date()).format('LL')}</div>
         </div>
         <div className="flex w-full mt-4 flex-col items-start justify-center gap-4">
-          {tempCategories.map((category) => {
+          {tempCategories.map((category, i) => {
             return (
               <CategoryColection
+                key={i}
                 categoryCollection={category}
               ></CategoryColection>
             );
