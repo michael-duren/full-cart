@@ -40,6 +40,7 @@ namespace Persistence
 
             await context.AppUsers.AddRangeAsync(users);
             await context.GroceryItems.AddRangeAsync(items);
+            await context.GroceryLists.AddRangeAsync(list);
             await context.SaveChangesAsync();
         }
     }
