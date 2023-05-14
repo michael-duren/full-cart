@@ -87,6 +87,13 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("GroceryListId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -96,40 +103,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GroceryItems");
-                });
-
-            modelBuilder.Entity("Domain.GroceryItemDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("GroceryItemId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("GroceryListId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("InCart")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("ListId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroceryItemId");
-
                     b.HasIndex("GroceryListId");
 
-                    b.ToTable("GroceryItemDetails");
+                    b.ToTable("GroceryItems");
                 });
 
             modelBuilder.Entity("Domain.GroceryList", b =>
@@ -139,10 +115,12 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AppUserId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ListCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -280,34 +258,18 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.GroceryItemDetail", b =>
+            modelBuilder.Entity("Domain.GroceryItem", b =>
                 {
-                    b.HasOne("Domain.GroceryItem", "GroceryItem")
-                        .WithMany()
-                        .HasForeignKey("GroceryItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.GroceryList", "GroceryList")
-                        .WithMany("ItemDetails")
-                        .HasForeignKey("GroceryListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GroceryItem");
-
-                    b.Navigation("GroceryList");
+                    b.HasOne("Domain.GroceryList", null)
+                        .WithMany("GroceryItems")
+                        .HasForeignKey("GroceryListId");
                 });
 
             modelBuilder.Entity("Domain.GroceryList", b =>
                 {
-                    b.HasOne("Domain.AppUser", "AppUser")
+                    b.HasOne("Domain.AppUser", null)
                         .WithMany("GroceryLists")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
+                        .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -368,7 +330,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.GroceryList", b =>
                 {
-                    b.Navigation("ItemDetails");
+                    b.Navigation("GroceryItems");
                 });
 #pragma warning restore 612, 618
         }
