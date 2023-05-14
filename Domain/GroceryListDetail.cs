@@ -1,6 +1,6 @@
 namespace Domain;
 
-public class GroceryItemDetail
+public class GroceryListDetail
 {
     public Guid Id { get; set; }
     public int Quantity { get; set; }

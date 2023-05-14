@@ -51,6 +51,20 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GroceryItems",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Price = table.Column<decimal>(type: "TEXT", nullable: true),
+                    Category = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GroceryItems", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -176,23 +190,32 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GroceryItems",
+                name: "GroceryListDetails",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: true),
-                    Category = table.Column<string>(type: "TEXT", nullable: false),
-                    GroceryListId = table.Column<Guid>(type: "TEXT", nullable: true)
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    InCart = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ItemId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ListId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    GroceryItemId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    GroceryListId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroceryItems", x => x.Id);
+                    table.PrimaryKey("PK_GroceryListDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_GroceryItems_GroceryLists_GroceryListId",
+                        name: "FK_GroceryListDetails_GroceryItems_GroceryItemId",
+                        column: x => x.GroceryItemId,
+                        principalTable: "GroceryItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GroceryListDetails_GroceryLists_GroceryListId",
                         column: x => x.GroceryListId,
                         principalTable: "GroceryLists",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -233,8 +256,13 @@ namespace Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_GroceryItems_GroceryListId",
-                table: "GroceryItems",
+                name: "IX_GroceryListDetails_GroceryItemId",
+                table: "GroceryListDetails",
+                column: "GroceryItemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GroceryListDetails_GroceryListId",
+                table: "GroceryListDetails",
                 column: "GroceryListId");
 
             migrationBuilder.CreateIndex(
@@ -262,10 +290,13 @@ namespace Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "GroceryItems");
+                name: "GroceryListDetails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "GroceryItems");
 
             migrationBuilder.DropTable(
                 name: "GroceryLists");

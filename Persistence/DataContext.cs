@@ -11,6 +11,7 @@ public class DataContext : IdentityDbContext<AppUser>
 
     public DbSet<AppUser> AppUsers { get; set; } = null!;
     public DbSet<GroceryList> GroceryLists { get; set; } = null!;
+    public DbSet<GroceryListDetail> GroceryListDetails { get; set; } = null!;
 
     // public DbSet<GroceryItemDetail> GroceryItemDetails { get; set; } = null!;
     public DbSet<GroceryItem> GroceryItems { get; set; } = null!;

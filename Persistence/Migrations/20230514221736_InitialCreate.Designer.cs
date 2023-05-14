@@ -11,7 +11,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230514211917_InitialCreate")]
+    [Migration("20230514221736_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -94,9 +94,6 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("GroceryListId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -105,8 +102,6 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GroceryListId");
 
                     b.ToTable("GroceryItems");
                 });
@@ -131,6 +126,39 @@ namespace Persistence.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("GroceryLists");
+                });
+
+            modelBuilder.Entity("Domain.GroceryListDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("GroceryItemId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("GroceryListId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("InCart")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ListId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroceryItemId");
+
+                    b.HasIndex("GroceryListId");
+
+                    b.ToTable("GroceryListDetails");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -261,18 +289,30 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.GroceryItem", b =>
-                {
-                    b.HasOne("Domain.GroceryList", null)
-                        .WithMany("GroceryItems")
-                        .HasForeignKey("GroceryListId");
-                });
-
             modelBuilder.Entity("Domain.GroceryList", b =>
                 {
                     b.HasOne("Domain.AppUser", null)
                         .WithMany("GroceryLists")
                         .HasForeignKey("AppUserId");
+                });
+
+            modelBuilder.Entity("Domain.GroceryListDetail", b =>
+                {
+                    b.HasOne("Domain.GroceryItem", "GroceryItem")
+                        .WithMany()
+                        .HasForeignKey("GroceryItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.GroceryList", "GroceryList")
+                        .WithMany("GroceryListDetails")
+                        .HasForeignKey("GroceryListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GroceryItem");
+
+                    b.Navigation("GroceryList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -333,7 +373,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.GroceryList", b =>
                 {
-                    b.Navigation("GroceryItems");
+                    b.Navigation("GroceryListDetails");
                 });
 #pragma warning restore 612, 618
         }
