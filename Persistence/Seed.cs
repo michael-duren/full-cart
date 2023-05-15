@@ -10,54 +10,85 @@ namespace Persistence
             {
                 return;
             }
-
-            var users = new List<AppUser>
+            var item = new GroceryItem
             {
-                new AppUser { UserName = "Michael Duren", Email = "michaeld@michaelduren.com" },
-                new AppUser { UserName = "Daniel Duren", Email = "daniel@danielduren.com" }
+                Id = Guid.NewGuid(),
+                Name = "Milk",
+                Price = 3.99m,
+                Category = "Dairy"
             };
 
-            var list = new List<GroceryList> { new GroceryList { Name = "Normal", } };
+            await context.GroceryItems.AddAsync(item);
 
-            var items = new List<GroceryItem>
-            {
-                new GroceryItem
-                {
-                    Name = "Broccoli",
-                    Price = 4,
-                    Category = "Veggies"
-                },
-                new GroceryItem
-                {
-                    Name = "Steak",
-                    Price = 10,
-                    Category = "Meat"
-                }
-            };
-
-            var details = new List<GroceryListDetail>
+            var detail = new List<GroceryListDetail>
             {
                 new GroceryListDetail
                 {
-                    Quantity = 1,
+                    Id = Guid.NewGuid(),
+                    Quantity = 2,
                     InCart = false,
-                    GroceryItem = items[0],
-                    GroceryList = list[0]
-                },
-                new GroceryListDetail
-                {
-                    Quantity = 1,
-                    InCart = false,
-                    GroceryItem = items[1],
-                    GroceryList = list[0]
+                    ItemId = item.Id,
+                    GroceryItem = item
                 }
             };
 
-            await context.AppUsers.AddRangeAsync(users);
-            await context.GroceryLists.AddRangeAsync(list);
-            await context.GroceryListDetails.AddRangeAsync(details);
-            await context.GroceryItems.AddRangeAsync(items);
+            var list = new GroceryList { Id = Guid.NewGuid(), Name = "New List", };
+
+            detail[0].ListId = list.Id;
+            detail[0].GroceryList = list;
+            list.GroceryListDetails = detail;
+
+            await context.GroceryListDetails.AddRangeAsync(detail);
+            await context.GroceryLists.AddAsync(list);
             await context.SaveChangesAsync();
+
+            if (context.GroceryItems.Any())
+            {
+                return;
+            }
+
+            // var users = new List<AppUser>
+            // {
+            //     new AppUser { UserName = "Michael Duren", Email = "michaeld@michaelduren.com" },
+            //     new AppUser { UserName = "Daniel Duren", Email = "daniel@danielduren.com" }
+            // };
+
+            // var list = new List<GroceryList>
+            // {
+            //     new GroceryList
+            //     {
+            //         Name = "Normal",
+            //         GroceryListDetails = new List<GroceryListDetail>
+            //         {
+            //             new GroceryListDetail
+            //             {
+            //                 Quantity = 1,
+            //                 InCart = false,
+            //                 GroceryItem = new GroceryItem
+            //                 {
+            //                     Name = "Broccoli",
+            //                     Price = 4,
+            //                     Category = "Veggies"
+            //                 },
+            //             },
+            //             new GroceryListDetail
+            //             {
+            //                 Quantity = 1,
+            //                 InCart = false,
+            //                 GroceryItem = new GroceryItem
+            //                 {
+            //                     Name = "Steak",
+            //                     Price = 10,
+            //                     Category = "Meat"
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
+
+            // await context.AppUsers.AddRangeAsync(users);
+            // await context.GroceryLists.AddRangeAsync(list);
+            // await context.SaveChangesAsync();
         }
     }
 }
