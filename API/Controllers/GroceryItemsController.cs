@@ -1,8 +1,6 @@
 using Application.GroceryItems;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace API.Controllers
 {
@@ -31,6 +29,12 @@ namespace API.Controllers
         public async Task<IActionResult> EditGroceryItem(GroceryItem groceryItem)
         {
             return Ok(await Mediator.Send(new Edit.Command { GroceryItem = groceryItem }));
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteGroceryItem(Guid id)
+        {
+            return Ok(await Mediator.Send(new Delete.Command { Id = id }));
         }
     }
 }
