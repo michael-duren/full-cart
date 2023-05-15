@@ -17,11 +17,22 @@ builder.Services.AddDbContext<DataContext>(opt =>
 {
     opt.UseSqlite(builder.Configuration.GetConnectionString("Default"));
 });
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy(
+        "CorsPolicy",
+        policy =>
+        {
+            policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:5173");
+        }
+    );
+});
 
 builder.Services.AddMediatR(typeof(GetAll.Handler));
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 var app = builder.Build();
+app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

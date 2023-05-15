@@ -1,22 +1,23 @@
+import axios from 'axios';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import categories from '../../components/categories/categories';
 import CategoryColection from '../../components/categories/CategoryCollection';
-import { CategoryItems } from '../../utils/types';
+import { useEffect, useState } from 'react';
+import { Item } from '../../utils/types';
 
 export default function NewList() {
+  const [items, setItems] = useState<Item[]>();
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/GroceryItems')
+      .then((response) => setItems(response.data))
+      .catch((e) => console.log(`OH NO AN ERROR OCCURED ${e}`));
+  }, []);
+
+  console.log(items);
+
   dayjs.extend(localizedFormat);
-  const tempCategories: CategoryItems[] = categories.map((category) => {
-    return {
-      ...category,
-      items: [
-        {
-          name: 'French Bread',
-          price: 3,
-        },
-      ],
-    };
-  });
 
   return (
     <>
@@ -26,14 +27,19 @@ export default function NewList() {
           <div>{dayjs(new Date()).format('LL')}</div>
         </div>
         <div className="flex w-full mt-4 flex-col items-start justify-center gap-4">
-          {tempCategories.map((category, i) => {
-            return (
-              <CategoryColection
-                key={i}
-                categoryCollection={category}
-              ></CategoryColection>
-            );
-          })}
+          {items ? (
+            categories.map((category, i) => {
+              return (
+                <CategoryColection
+                  items={items}
+                  key={i}
+                  categoryCollection={category}
+                ></CategoryColection>
+              );
+            })
+          ) : (
+            <div>Loading....</div>
+          )}
         </div>
       </main>
     </>

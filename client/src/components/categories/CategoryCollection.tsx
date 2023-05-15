@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CategoryItems } from '../../utils/types';
+import { CategoryItems, Item } from '../../utils/types';
 import ItemInstance from './ItemInstance';
 import { TbCarrot, TbCarrotOff } from 'react-icons/tb';
 import AddItemModal from '../modals/AddItem';
@@ -7,14 +7,18 @@ import { v4 as uuid } from 'uuid';
 
 interface CategoryProps {
   categoryCollection: CategoryItems;
+  items: Item[];
 }
 
 export default function CategoryColection({
   categoryCollection,
+  items,
 }: CategoryProps) {
-  const { category, CategoryIcon, items } = categoryCollection;
+  const { category, CategoryIcon } = categoryCollection;
   const [isOpen, setIsOpen] = useState(false);
   const [openAddItem, setIsOpenAddItem] = useState(false);
+
+  const categoryItems = items.filter((item) => item.category === category);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -46,8 +50,8 @@ export default function CategoryColection({
       {/* items */}
       {isOpen && (
         <div className="grid grid-cols-2 border-2 rounded-md p-2 my-2 w-full">
-          {items &&
-            items.map((item) => {
+          {categoryItems &&
+            categoryItems.map((item) => {
               return <ItemInstance key={item.name} item={item} />;
             })}
         </div>
