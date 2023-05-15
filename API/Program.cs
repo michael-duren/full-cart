@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Persistence;
-using Application;
 using Application.GroceryItems;
+using Application.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DataContext>(opt =>
 });
 
 builder.Services.AddMediatR(typeof(GetAll.Handler));
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 var app = builder.Build();
 
