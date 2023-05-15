@@ -1,13 +1,13 @@
-import { Route, Routes } from 'react-router-dom';
-import Home from './routes/home/Home';
-import NewList from './routes/lists/NewList';
+import { Outlet } from 'react-router-dom';
+import NavBar from './routes/navigation/NavBar';
+import Layout from './components/layout/Layout';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/newlist" element={<NewList />} />
-    </Routes>
+    <Layout>
+      <NavBar />
+      <Outlet />
+    </Layout>
   );
 }
 

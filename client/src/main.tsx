@@ -1,18 +1,11 @@
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App.tsx';
+import { RouterProvider } from 'react-router-dom';
 import './index.css';
-import Layout from './components/layout/Layout.tsx';
-import NavBar from './routes/navigation/NavBar.tsx';
 import { StoreContext, store } from './stores/store.ts';
+import { router } from './routes/router/Route.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Layout>
-    <StoreContext.Provider value={store}>
-      <NavBar />
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </StoreContext.Provider>
-  </Layout>
+  <StoreContext.Provider value={store}>
+    <RouterProvider router={router} />
+  </StoreContext.Provider>
 );
