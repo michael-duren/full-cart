@@ -25,9 +25,10 @@ namespace API.Controllers
             return Ok(await Mediator.Send(new Create.Command { GroceryItem = groceryItem }));
         }
 
-        [HttpPut]
-        public async Task<IActionResult> EditGroceryItem(GroceryItem groceryItem)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditGroceryItem(Guid id, GroceryItem groceryItem)
         {
+            groceryItem.Id = id;
             return Ok(await Mediator.Send(new Edit.Command { GroceryItem = groceryItem }));
         }
 
