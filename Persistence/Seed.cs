@@ -35,7 +35,6 @@ namespace Persistence
             var list = new GroceryList { Id = Guid.NewGuid(), Name = "New List", };
 
             detail[0].ListId = list.Id;
-            detail[0].GroceryList = list;
             list.GroceryListDetails = detail;
 
             await context.GroceryListDetails.AddRangeAsync(detail);

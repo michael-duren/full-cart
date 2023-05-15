@@ -9,5 +9,4 @@ public class GroceryListDetail
     public Guid ListId { get; set; }
 
     public GroceryItem GroceryItem { get; set; } = null!;
-    public GroceryList GroceryList { get; set; } = null!;
 }
