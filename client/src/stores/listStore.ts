@@ -1,6 +1,7 @@
 import agent from '../api/agent';
 import { Item } from '../utils/types';
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
+import { v4 as uuid } from 'uuid';
 
 export default class GroceryListStore {
   categoryItems: Item[] = [];
@@ -13,6 +14,8 @@ export default class GroceryListStore {
     makeAutoObservable(this);
   }
 
+  // operations
+
   loadItems = async () => {
     this.setLoadingInitial(true);
     try {
@@ -21,6 +24,27 @@ export default class GroceryListStore {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  createItem = async (item: Item) => {
+    this.setLoading(true);
+    item.id = uuid();
+    try {
+      await agent.Items.create(item);
+      runInAction(() => {
+        this.categoryItems.push(item);
+        this.setLoading(false);
+      });
+    } catch (error) {
+      console.log(error);
+      this.setLoading(false);
+    }
+  };
+
+  // setters
+
+  setLoading = (state: boolean) => {
+    this.loading = state;
   };
 
   setLoadingInitial = (state: boolean) => {
