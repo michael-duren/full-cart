@@ -5,6 +5,7 @@ import CategoryColection from '../../components/categories/CategoryCollection';
 import { useEffect } from 'react';
 import { useStore } from '../../stores/store';
 import { observer } from 'mobx-react-lite';
+import LogoSpinner from '../../components/spinners/LogoSpinner';
 
 export default observer(function NewList() {
   const { listStore } = useStore();
@@ -17,7 +18,7 @@ export default observer(function NewList() {
   dayjs.extend(localizedFormat);
 
   if (loadingInitial) {
-    return <div>LOADING</div>;
+    return <LogoSpinner />;
   }
 
   return (

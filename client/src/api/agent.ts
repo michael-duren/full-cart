@@ -2,7 +2,21 @@ import axios from 'axios';
 import type { AxiosResponse } from 'axios';
 import type { Item } from '../utils/types';
 
+const sleep = (delay: number) => {
+  return new Promise((resolve) => setTimeout(resolve, delay));
+};
+
 axios.defaults.baseURL = 'http://localhost:5000/api';
+
+axios.interceptors.response.use(async (response) => {
+  try {
+    await sleep(600);
+    return response;
+  } catch (e) {
+    console.log(e);
+    return await Promise.reject(e);
+  }
+});
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
