@@ -15,7 +15,7 @@ export interface Item {
     | 'Household';
 }
 
-export interface CategoryItems {
+export interface CategoryCollection {
   category:
     | 'Veggies'
     | 'Fruits'
@@ -32,9 +32,8 @@ export interface CategoryItems {
       title?: string | undefined;
     }
   >;
-  items?: Item[];
 }
 
 export interface GroceryList {
-  items: CategoryItems[];
+  items: CategoryCollection[];
 }

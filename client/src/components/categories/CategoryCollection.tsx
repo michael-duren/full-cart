@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { CategoryItems } from '../../utils/types';
+import { CategoryCollection } from '../../utils/types';
 import ItemInstance from './ItemInstance';
 import { TbCarrot, TbCarrotOff } from 'react-icons/tb';
 import AddItemModal from '../modals/AddItem';
-import { v4 as uuid } from 'uuid';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../stores/store';
 
 interface CategoryProps {
-  categoryCollection: CategoryItems;
+  categoryCollection: CategoryCollection;
 }
 
 export default observer(function CategoryColection({
@@ -26,7 +25,7 @@ export default observer(function CategoryColection({
 
   return (
     <div
-      key={uuid()}
+      key={category}
       className="flex items-start border-b-2 pb-2  flex-col w-full"
     >
       <div className="flex my-2 justify-between items-center w-full">
@@ -54,7 +53,7 @@ export default observer(function CategoryColection({
         <div className="grid grid-cols-2 border-2 rounded-md p-2 my-2 w-full">
           {items &&
             items.map((item) => {
-              return <ItemInstance key={item.name} item={item} />;
+              return <ItemInstance key={item.id} item={item} />;
             })}
         </div>
       )}
