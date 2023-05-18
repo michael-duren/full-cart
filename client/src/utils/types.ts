@@ -1,32 +1,12 @@
 export interface Item {
   id: string;
   name: string;
-  price: number;
-  category?:
-    | 'Veggies'
-    | 'Fruits'
-    | 'Dairy'
-    | 'Meat'
-    | 'Starches'
-    | 'Snacks'
-    | 'Beverages'
-    | 'Spices'
-    | 'Condiments'
-    | 'Household';
+  price: string;
+  category?: Category;
 }
 
 export interface CategoryCollection {
-  category:
-    | 'Veggies'
-    | 'Fruits'
-    | 'Dairy'
-    | 'Meat'
-    | 'Starches'
-    | 'Snacks'
-    | 'Beverages'
-    | 'Spices'
-    | 'Condiments'
-    | 'Household';
+  category: Category;
   CategoryIcon: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
       title?: string | undefined;
@@ -36,4 +16,17 @@ export interface CategoryCollection {
 
 export interface GroceryList {
   items: CategoryCollection[];
+}
+
+export enum Category {
+  Veggies = 'Veggies',
+  Fruits = 'Fruits',
+  Dairy = 'Dairy',
+  Meat = 'Meat',
+  Starches = 'Starches',
+  Snacks = 'Snacks',
+  Beverages = 'Beverages',
+  Spices = 'Spices',
+  Condiments = 'Condiments',
+  Household = 'Household',
 }

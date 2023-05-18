@@ -25,10 +25,12 @@ export default function Home() {
           </div>
         </div>
         {/* button below */}
-        <div className="flex items-center justify-center">
-          <button className="w-20 h-20 absolute bottom-10  text-white shadow-lg cursor-pointer text-2xl rounded-full bg-geraldine">
-            <Link to={'newlist'}>+</Link>
-          </button>
+        <div className="flex items-center absolute bottom-10 justify-center">
+          <Link to={'newlist'}>
+            <button className="w-20 h-20 text-white shadow-lg cursor-pointer text-2xl rounded-full bg-geraldine">
+              +
+            </button>
+          </Link>
         </div>
       </main>
     </>

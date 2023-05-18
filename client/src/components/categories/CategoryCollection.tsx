@@ -57,7 +57,11 @@ export default observer(function CategoryColection({
             })}
         </div>
       )}
-      <AddItemModal isOpen={openAddItem} setIsOpen={setIsOpenAddItem} />
+      <AddItemModal
+        isOpen={openAddItem}
+        category={category}
+        setIsOpen={setIsOpenAddItem}
+      />
     </div>
   );
 });

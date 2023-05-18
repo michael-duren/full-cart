@@ -1,12 +1,19 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import AddItemForm from '../forms/AddItemForm';
+import { Category } from '../../utils/types';
 
 interface AddItemModalProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  category: Category;
 }
 
-export default function AddItemModal({ isOpen, setIsOpen }: AddItemModalProps) {
+export default function AddItemModal({
+  isOpen,
+  setIsOpen,
+  category,
+}: AddItemModalProps) {
   const closeModal = () => setIsOpen(false);
 
   return (
@@ -42,43 +49,7 @@ export default function AddItemModal({ isOpen, setIsOpen }: AddItemModalProps) {
                 >
                   Add Item
                 </Dialog.Title>
-                <div className="flex mb-8 space-y-4 items-center justify-center flex-col   mt-2 ">
-                  <div className="flex flex-col">
-                    <input
-                      className="border-2 p-2 rounded-md"
-                      placeholder="Name"
-                      type="text"
-                      name="name"
-                      id="name"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <input
-                      className="border-2 p-2 rounded-md"
-                      type="number"
-                      placeholder="0.00"
-                      name="price"
-                      id="price"
-                    />
-                  </div>
-                </div>
-
-                <div className=" flex items-center justify-center gap-4 mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-geraldine-light px-4 py-2 text-sm font-medium bg-opacity-20 text-geraldine-dark hover:bg-geraldine focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={closeModal}
-                  >
-                    Add
-                  </button>
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-opacity-20 bg-h-pink-light px-4 py-2 text-sm font-medium text-h-pink-dark hover:bg-h-pink focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={closeModal}
-                  >
-                    Cancel
-                  </button>
-                </div>
+                <AddItemForm category={category} closeModal={closeModal} />
               </Dialog.Panel>
             </Transition.Child>
           </div>
