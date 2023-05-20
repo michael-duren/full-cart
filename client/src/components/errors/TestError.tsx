@@ -1,5 +1,5 @@
 import axios from 'axios';
-import PrimaryButton from './buttons/PrimaryButton';
+import PrimaryButton from '../buttons/PrimaryButton';
 
 export default function TestErrors() {
   const baseUrl = 'http://localhost:5000/api/';
