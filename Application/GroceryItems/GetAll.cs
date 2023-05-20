@@ -2,14 +2,15 @@ using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Application.Core;
 
 namespace Application.GroceryItems
 {
     public class GetAll
     {
-        public class Query : IRequest<List<GroceryItem>> { }
+        public class Query : IRequest<Result<List<GroceryItem>>> { }
 
-        public class Handler : IRequestHandler<Query, List<GroceryItem>>
+        public class Handler : IRequestHandler<Query, Result<List<GroceryItem>>>
         {
             private readonly DataContext _context;
 
@@ -18,12 +19,12 @@ namespace Application.GroceryItems
                 _context = context;
             }
 
-            public async Task<List<GroceryItem>> Handle(
+            public async Task<Result<List<GroceryItem>>> Handle(
                 Query request,
                 CancellationToken cancellationToken
             )
             {
-                return await _context.GroceryItems.ToListAsync();
+                return Result<List<GroceryItem>>.Success(await _context.GroceryItems.ToListAsync());
             }
         }
     }

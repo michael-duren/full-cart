@@ -1,3 +1,4 @@
+using Application.Core;
 using Domain;
 using MediatR;
 using Persistence;
@@ -6,12 +7,12 @@ namespace Application.GroceryItems
 {
     public class GetSingle
     {
-        public class Query : IRequest<GroceryItem>
+        public class Query : IRequest<Result<GroceryItem>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, GroceryItem>
+        public class Handler : IRequestHandler<Query, Result<GroceryItem>>
         {
             private readonly DataContext _context;
 
@@ -20,12 +21,14 @@ namespace Application.GroceryItems
                 _context = context;
             }
 
-            public async Task<GroceryItem> Handle(
+            public async Task<Result<GroceryItem>> Handle(
                 Query request,
                 CancellationToken cancellationToken
             )
             {
-                return await _context.GroceryItems.FindAsync(request.Id);
+                var item = await _context.GroceryItems.FindAsync(request.Id);
+
+                return Result<GroceryItem>.Success(item);
             }
         }
     }

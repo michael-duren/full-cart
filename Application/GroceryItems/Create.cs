@@ -2,12 +2,13 @@ using Domain;
 using FluentValidation;
 using MediatR;
 using Persistence;
+using Application.Core;
 
 namespace Application.GroceryItems
 {
     public class Create
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public GroceryItem GroceryItem { get; set; }
         }
@@ -20,7 +21,7 @@ namespace Application.GroceryItems
             }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
 
@@ -29,12 +30,19 @@ namespace Application.GroceryItems
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(
+                Command request,
+                CancellationToken cancellationToken
+            )
             {
                 _context.GroceryItems.Add(request.GroceryItem);
 
-                await _context.SaveChangesAsync();
-                return Unit.Value;
+                var result = await _context.SaveChangesAsync() > 0;
+
+                if (!result)
+                    return Result<Unit>.Failure("Failed to create Grocery Item");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }
