@@ -1,7 +1,11 @@
 import axios from 'axios';
 import PrimaryButton from '../buttons/PrimaryButton';
+import { useState } from 'react';
+import ValidationError from './ValidationError';
 
 export default function TestErrors() {
+  const [errors, setErrors] = useState(null);
+
   const baseUrl = 'http://localhost:5000/api/';
 
   function handleNotFound() {
@@ -30,63 +34,64 @@ export default function TestErrors() {
 
   function handleBadGuid() {
     axios
-      .get(baseUrl + 'activities/notaguid')
+      .get(baseUrl + 'groceryitems/notaguid')
       .catch((err) => console.log(err.response));
   }
 
   function handleValidationError() {
-    axios
-      .post(baseUrl + 'activities', {})
-      .catch((err) => console.log(err.response));
+    axios.post(baseUrl + 'groceryitems', {}).catch((err) => setErrors(err));
   }
 
   return (
-    <div className="h-full w-full">
-      <h1>Test Error component</h1>
-      <div className="flex space-y-4 items-center justify-center flex-col">
-        <div className="mt-4">
-          <PrimaryButton
-            type="submit"
-            onClick={handleNotFound}
-            content="Not Found"
-          />
-        </div>
-        <div>
-          <PrimaryButton
-            type="button"
-            onClick={handleBadRequest}
-            content="Bad Request"
-          />
-        </div>
-        <div>
-          <PrimaryButton
-            type="button"
-            onClick={handleValidationError}
-            content="Validation Error"
-          />
-        </div>
-        <div>
-          <PrimaryButton
-            type="button"
-            onClick={handleServerError}
-            content="Server Error"
-          />
-        </div>
-        <div>
-          <PrimaryButton
-            type="button"
-            onClick={handleUnauthorised}
-            content="Unauthorised"
-          />
-        </div>
-        <div>
-          <PrimaryButton
-            type="button"
-            onClick={handleBadGuid}
-            content="Bad Guid"
-          />
+    <>
+      <div className="h-full w-full">
+        <h1>Test Error component</h1>
+        <div className="flex space-y-4 items-center justify-center flex-col">
+          <div className="mt-4">
+            <PrimaryButton
+              type="submit"
+              onClick={handleNotFound}
+              content="Not Found"
+            />
+          </div>
+          <div>
+            <PrimaryButton
+              type="button"
+              onClick={handleBadRequest}
+              content="Bad Request"
+            />
+          </div>
+          <div>
+            <PrimaryButton
+              type="button"
+              onClick={handleValidationError}
+              content="Validation Error"
+            />
+          </div>
+          <div>
+            <PrimaryButton
+              type="button"
+              onClick={handleServerError}
+              content="Server Error"
+            />
+          </div>
+          <div>
+            <PrimaryButton
+              type="button"
+              onClick={handleUnauthorised}
+              content="Unauthorised"
+            />
+          </div>
+          <div>
+            <PrimaryButton
+              type="button"
+              onClick={handleBadGuid}
+              content="Bad Guid"
+            />
+          </div>
         </div>
       </div>
-    </div>
+      {errors && <ValidationError errors={errors} />}
+    </>
   );
 }
