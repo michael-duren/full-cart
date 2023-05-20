@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { useStore } from '../../stores/store';
-import { Category } from '../../utils/types';
+import { Category } from '../../utils/models/grocery';
 import { observer } from 'mobx-react-lite';
 import PrimaryButton from '../buttons/PrimaryButton';
 import SecondaryButton from '../buttons/SecondaryButton';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CategoryCollection } from '../../utils/types';
+import { CategoryCollection } from '../../utils/models/grocery';
 import ItemInstance from './ItemInstance';
 import { TbCarrot, TbCarrotOff } from 'react-icons/tb';
 import AddItemModal from '../modals/AddItem';
