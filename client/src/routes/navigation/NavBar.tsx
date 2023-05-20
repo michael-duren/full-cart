@@ -10,7 +10,7 @@ export default function NavBar() {
             <span className="font-serif text-geraldine">full</span>
             <span className="font-serif text-h-pink">Cart</span>
           </Link>
-          <Link to={'/errors'}>Errors</Link>
+          {/* <Link to={'/errors'}>Errors</Link> */}
         </div>
       </h1>
       <div>
