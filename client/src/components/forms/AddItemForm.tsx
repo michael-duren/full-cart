@@ -2,6 +2,8 @@ import { ChangeEvent, useState } from 'react';
 import { useStore } from '../../stores/store';
 import { Category } from '../../utils/types';
 import { observer } from 'mobx-react-lite';
+import PrimaryButton from '../buttons/PrimaryButton';
+import SecondaryButton from '../buttons/SecondaryButton';
 
 interface AddItemProps {
   closeModal: () => void;
@@ -62,20 +64,12 @@ export default observer(function AddItemForm({
       </div>
 
       <div className=" flex items-center justify-center gap-4 mt-4">
-        <button
-          type="submit"
-          className="inline-flex justify-center rounded-md border border-transparent bg-geraldine-light px-4 py-2 text-sm font-medium bg-opacity-20 text-geraldine-dark hover:bg-geraldine focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-          onClick={closeModal}
-        >
+        <PrimaryButton type="submit" onClick={closeModal}>
           Add
-        </button>
-        <button
-          type="button"
-          className="inline-flex justify-center rounded-md border border-transparent bg-opacity-20 bg-h-pink-light px-4 py-2 text-sm font-medium text-h-pink-dark hover:bg-h-pink focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-          onClick={closeModal}
-        >
+        </PrimaryButton>
+        <SecondaryButton type="button" onClick={closeModal}>
           Cancel
-        </button>
+        </SecondaryButton>
       </div>
     </form>
   );

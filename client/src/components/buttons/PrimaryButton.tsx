@@ -1,21 +1,33 @@
 interface Props {
   children?: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   content?: string;
+  type: 'submit' | 'button';
 }
 
-export default function PrimaryButton({ children, content, onClick }: Props) {
+export default function PrimaryButton({
+  children,
+  type,
+  content,
+  onClick,
+}: Props) {
   return (
     <>
       {children ? (
-        <button onClick={onClick} className="border-2 text-red">
+        <button
+          type={type}
+          onClick={onClick}
+          className="inline-flex transition duration-300 justify-center rounded-md border border-transparent bg-geraldine-light px-4 py-2 text-sm font-medium bg-opacity-20
+           text-geraldine-dark hover:bg-geraldine hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        >
           {children}
         </button>
       ) : (
         <button
+          type={type}
           onClick={onClick}
-          className="p-1 active:scale-105 rounded-md border-geraldine text-geraldine text-sm  hover:text-geraldine-dark
-           bg-geraldine-light uppercase bg-opacity-10 shadow-lg hover:border-geraldine-dark border-2 text-red font-sans"
+          className="inline-flex justify-center transition-all duration-300 rounded-md border border-transparent bg-geraldine-light px-4 py-2 text-sm font-medium bg-opacity-20
+           text-geraldine-dark hover:text-white hover:bg-geraldine focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
         >
           {content}
         </button>

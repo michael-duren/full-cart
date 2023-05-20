@@ -1,8 +1,9 @@
-import { RouteObject, createBrowserRouter } from 'react-router-dom';
+import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 import App from '../../App';
 import Home from '../home/Home';
 import NewList from '../lists/NewList';
 import TestErrors from '../../components/errors/TestError';
+import NotFound from '../../components/errors/NotFound';
 
 export const routes: RouteObject[] = [
   {
@@ -12,6 +13,8 @@ export const routes: RouteObject[] = [
       { path: '', element: <Home /> },
       { path: 'newlist', element: <NewList /> },
       { path: 'errors', element: <TestErrors /> },
+      { path: 'not-found', element: <NotFound /> },
+      { path: '*', element: <Navigate replace to={'/not-found'} /> },
     ],
   },
 ];

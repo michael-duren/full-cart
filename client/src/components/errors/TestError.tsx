@@ -45,25 +45,46 @@ export default function TestErrors() {
       <h1>Test Error component</h1>
       <div className="flex space-y-4 items-center justify-center flex-col">
         <div className="mt-4">
-          <PrimaryButton onClick={handleNotFound} content="Not Found" />
-        </div>
-        <div>
-          <PrimaryButton onClick={handleBadRequest} content="Bad Request" />
+          <PrimaryButton
+            type="submit"
+            onClick={handleNotFound}
+            content="Not Found"
+          />
         </div>
         <div>
           <PrimaryButton
+            type="button"
+            onClick={handleBadRequest}
+            content="Bad Request"
+          />
+        </div>
+        <div>
+          <PrimaryButton
+            type="button"
             onClick={handleValidationError}
             content="Validation Error"
           />
         </div>
         <div>
-          <PrimaryButton onClick={handleServerError} content="Server Error" />
+          <PrimaryButton
+            type="button"
+            onClick={handleServerError}
+            content="Server Error"
+          />
         </div>
         <div>
-          <PrimaryButton onClick={handleUnauthorised} content="Unauthorised" />
+          <PrimaryButton
+            type="button"
+            onClick={handleUnauthorised}
+            content="Unauthorised"
+          />
         </div>
         <div>
-          <PrimaryButton onClick={handleBadGuid} content="Bad Guid" />
+          <PrimaryButton
+            type="button"
+            onClick={handleBadGuid}
+            content="Bad Guid"
+          />
         </div>
       </div>
     </div>
