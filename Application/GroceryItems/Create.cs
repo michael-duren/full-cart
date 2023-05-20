@@ -1,4 +1,5 @@
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -9,6 +10,14 @@ namespace Application.GroceryItems
         public class Command : IRequest
         {
             public GroceryItem GroceryItem { get; set; }
+        }
+
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.GroceryItem).SetValidator(new GroceryItemValidator());
+            }
         }
 
         public class Handler : IRequestHandler<Command>
