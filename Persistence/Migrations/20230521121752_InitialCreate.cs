@@ -30,6 +30,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
+                    DisplayName = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -55,9 +56,9 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: true),
-                    Category = table.Column<string>(type: "TEXT", nullable: false)
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Category = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -176,7 +177,7 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     ListCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
                     AppUserId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -198,7 +199,7 @@ namespace Persistence.Migrations
                     InCart = table.Column<bool>(type: "INTEGER", nullable: false),
                     ItemId = table.Column<Guid>(type: "TEXT", nullable: false),
                     ListId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    GroceryItemId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    GroceryItemId = table.Column<Guid>(type: "TEXT", nullable: true),
                     GroceryListId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -208,8 +209,7 @@ namespace Persistence.Migrations
                         name: "FK_GroceryListDetails_GroceryItems_GroceryItemId",
                         column: x => x.GroceryItemId,
                         principalTable: "GroceryItems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_GroceryListDetails_GroceryLists_GroceryListId",
                         column: x => x.GroceryListId,
