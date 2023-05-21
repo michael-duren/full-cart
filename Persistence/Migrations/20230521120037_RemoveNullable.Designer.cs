@@ -11,8 +11,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230515131747_UpdateThree")]
-    partial class UpdateThree
+    [Migration("20230521120037_RemoveNullable")]
+    partial class RemoveNullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,14 +91,12 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Category")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -119,7 +117,6 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -135,10 +132,10 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("GroceryItemId")
+                    b.Property<Guid?>("GroceryItemId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("GroceryListId")
+                    b.Property<Guid?>("GroceryListId")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("InCart")
@@ -301,19 +298,13 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.GroceryItem", "GroceryItem")
                         .WithMany()
-                        .HasForeignKey("GroceryItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GroceryItemId");
 
-                    b.HasOne("Domain.GroceryList", "GroceryList")
+                    b.HasOne("Domain.GroceryList", null)
                         .WithMany("GroceryListDetails")
-                        .HasForeignKey("GroceryListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GroceryListId");
 
                     b.Navigation("GroceryItem");
-
-                    b.Navigation("GroceryList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -175,8 +175,8 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
                     ListCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
                     AppUserId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -199,7 +199,7 @@ namespace Persistence.Migrations
                     ItemId = table.Column<Guid>(type: "TEXT", nullable: false),
                     ListId = table.Column<Guid>(type: "TEXT", nullable: false),
                     GroceryItemId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    GroceryListId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    GroceryListId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -214,8 +214,7 @@ namespace Persistence.Migrations
                         name: "FK_GroceryListDetails_GroceryLists_GroceryListId",
                         column: x => x.GroceryListId,
                         principalTable: "GroceryLists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

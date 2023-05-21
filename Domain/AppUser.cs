@@ -4,6 +4,6 @@ namespace Domain
 {
     public class AppUser : IdentityUser
     {
-        public ICollection<GroceryList> GroceryLists { get; set; } = null!;
+        public ICollection<GroceryList> GroceryLists { get; set; }
     }
 }

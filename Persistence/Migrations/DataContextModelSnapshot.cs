@@ -88,14 +88,12 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Category")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -116,7 +114,6 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -132,7 +129,7 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("GroceryItemId")
+                    b.Property<Guid?>("GroceryItemId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid?>("GroceryListId")
@@ -298,9 +295,7 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.GroceryItem", "GroceryItem")
                         .WithMany()
-                        .HasForeignKey("GroceryItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GroceryItemId");
 
                     b.HasOne("Domain.GroceryList", null)
                         .WithMany("GroceryListDetails")

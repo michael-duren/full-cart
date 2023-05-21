@@ -6,9 +6,7 @@ public class GroceryList
 
     public DateTime ListCreated { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; }
 
-    public ICollection<GroceryListDetail>? GroceryListDetails { get; set; }
-    // public AppUser AppUser { get; set; } = null!;
-    // public ICollection<GroceryItemDetail> ItemDetails { get; set; } = null!;
+    public ICollection<GroceryListDetail> GroceryListDetails { get; set; }
 }

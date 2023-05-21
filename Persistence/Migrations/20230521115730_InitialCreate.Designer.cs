@@ -11,7 +11,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230514221736_InitialCreate")]
+    [Migration("20230521115730_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -119,6 +119,7 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -137,7 +138,7 @@ namespace Persistence.Migrations
                     b.Property<Guid>("GroceryItemId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("GroceryListId")
+                    b.Property<Guid?>("GroceryListId")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("InCart")
@@ -304,15 +305,11 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.GroceryList", "GroceryList")
+                    b.HasOne("Domain.GroceryList", null)
                         .WithMany("GroceryListDetails")
-                        .HasForeignKey("GroceryListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GroceryListId");
 
                     b.Navigation("GroceryItem");
-
-                    b.Navigation("GroceryList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

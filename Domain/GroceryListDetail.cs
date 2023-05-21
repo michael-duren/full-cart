@@ -8,5 +8,5 @@ public class GroceryListDetail
     public Guid ItemId { get; set; }
     public Guid ListId { get; set; }
 
-    public GroceryItem GroceryItem { get; set; } = null!;
+    public GroceryItem GroceryItem { get; set; }
 }
