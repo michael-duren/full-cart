@@ -1,5 +1,6 @@
 using Application.GroceryItems;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -12,7 +13,7 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new GetAll.Query()));
         }
 
-        // write a get method that returns a single grocery item
+        [Authorize]
         [HttpGet("{id}")] // api/groceryitems/woaief
         public async Task<IActionResult> GetGroceryItem(Guid id)
         {

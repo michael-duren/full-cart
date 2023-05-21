@@ -24,3 +24,4 @@
 - For more information on JWT check [here](https://jwt.io/introduction)
 - TokenService.cs: uses System.IdentityModel.Tokens.Jwt for working with JWT. Containes claims for what we're passing in token, key, credentials, token descriptor which contains Subject, Expires, and SIgning Credentials. Token is then created and written.
 - We then use AddScoped in IdentityServiceExtensions to scope the token to the HTTP Request.
+- Using microsoft.aspnetcore.authentication.jwtbearer. Logic for this is contained in Identiy Service Extensions
