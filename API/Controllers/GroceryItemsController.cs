@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class GroceryItemsController : BaseApiController
     {
         [HttpGet] // api/groceryitems

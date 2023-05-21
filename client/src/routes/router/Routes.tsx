@@ -1,10 +1,12 @@
 import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
 import App from '../../App';
-import Home from '../home/Home';
+import UserDashboard from '../userdashboard/UserDashboard';
 import NewList from '../lists/NewList';
 import TestErrors from '../../components/errors/TestError';
 import NotFound from '../../components/errors/NotFound';
 import ServerError from '../../components/errors/ServerError';
+import LoginForm from '../../components/users/LoginForm';
+import Home from '../home/Home';
 
 export const routes: RouteObject[] = [
   {
@@ -12,7 +14,9 @@ export const routes: RouteObject[] = [
     element: <App />,
     children: [
       { path: '', element: <Home /> },
+      { path: 'dashboard', element: <UserDashboard /> },
       { path: 'newlist', element: <NewList /> },
+      { path: 'login', element: <LoginForm /> },
       { path: 'errors', element: <TestErrors /> },
       { path: 'not-found', element: <NotFound /> },
       { path: 'server-error', element: <ServerError /> },

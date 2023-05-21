@@ -1,9 +1,10 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { useStore } from '../../stores/store';
 import { Category } from '../../utils/models/grocery';
 import { observer } from 'mobx-react-lite';
 import PrimaryButton from '../buttons/PrimaryButton';
 import SecondaryButton from '../buttons/SecondaryButton';
+import { Formik } from 'formik';
 
 interface AddItemProps {
   closeModal: () => void;
@@ -26,51 +27,63 @@ export default observer(function AddItemForm({
 
   const [itemData, setItemData] = useState(initialState);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setItemData({ ...itemData, [name]: value });
-  };
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
+  //   setItemData({ ...itemData, [name]: value });
+  // };
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    await createItem({ ...itemData, category: category });
-  };
+  // const handleSubmit = async (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   await createItem({ ...itemData, category: category });
+  // };
 
   return (
-    <form onSubmit={(event) => handleSubmit(event)}>
-      <div className="flex mb-8 space-y-4 items-center justify-center flex-col   mt-2 ">
-        <div className="flex flex-col">
-          <input
-            className="border-2 p-2 rounded-md"
-            onChange={handleChange}
-            placeholder="Name"
-            type="text"
-            name="name"
-            id="name"
-            required
-          />
-        </div>
-        <div className="flex flex-col">
-          <input
-            className="border-2 p-2 rounded-md"
-            onChange={handleChange}
-            type="number"
-            placeholder="0.00"
-            name="price"
-            id="price"
-            required
-          />
-        </div>
-      </div>
+    <>
+      <Formik
+        enableReinitialize
+        initialValues={itemData}
+        onSubmit={async (values) => await createItem({ ...values, category })}
+      >
+        {({ values: itemData, handleChange, handleSubmit }) => (
+          <form onSubmit={(event) => handleSubmit(event)}>
+            <div className="flex mb-8 space-y-4 items-center justify-center flex-col   mt-2 ">
+              <div className="flex flex-col">
+                <input
+                  className="border-2 p-2 rounded-md"
+                  onChange={handleChange}
+                  value={itemData.name}
+                  placeholder="Name"
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                />
+              </div>
+              <div className="flex flex-col">
+                <input
+                  className="border-2 p-2 rounded-md"
+                  onChange={handleChange}
+                  value={itemData.price}
+                  type="number"
+                  placeholder="0.00"
+                  name="price"
+                  id="price"
+                  required
+                />
+              </div>
+            </div>
 
-      <div className=" flex items-center justify-center gap-4 mt-4">
-        <PrimaryButton type="submit" onClick={closeModal}>
-          Add
-        </PrimaryButton>
-        <SecondaryButton type="button" onClick={closeModal}>
-          Cancel
-        </SecondaryButton>
-      </div>
-    </form>
+            <div className=" flex items-center justify-center gap-4 mt-4">
+              <PrimaryButton type="submit" onClick={closeModal}>
+                Add
+              </PrimaryButton>
+              <SecondaryButton type="button" onClick={closeModal}>
+                Cancel
+              </SecondaryButton>
+            </div>
+          </form>
+        )}
+      </Formik>
+    </>
   );
 });

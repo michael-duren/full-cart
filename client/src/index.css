@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.main-gradient-text {
+  background: linear-gradient(
+    328deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(139, 172, 170, 0.9) 15%,
+    rgba(231, 61, 61, 0.9) 83%,
+    rgba(255, 255, 255, 1) 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
