@@ -13,7 +13,6 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new GetAll.Query()));
         }
 
-        [Authorize]
         [HttpGet("{id}")] // api/groceryitems/woaief
         public async Task<IActionResult> GetGroceryItem(Guid id)
         {
