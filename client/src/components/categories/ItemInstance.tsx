@@ -1,4 +1,4 @@
-import { Item } from '../../utils/models/grocery';
+import { Item } from '../../models/grocery';
 
 interface ItemProps {
   item: Item;

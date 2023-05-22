@@ -1,5 +1,5 @@
 import agent from '../api/agent';
-import { Item } from '../utils/models/grocery';
+import { Item } from '../models/grocery';
 import { makeAutoObservable, runInAction } from 'mobx';
 import { v4 as uuid } from 'uuid';
 

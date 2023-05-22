@@ -1,9 +1,10 @@
 import axios, { AxiosError } from 'axios';
 import type { AxiosResponse } from 'axios';
-import type { Item } from '../utils/models/grocery';
+import type { Item } from '../models/grocery';
 import { toast } from 'react-toastify';
 import { router } from '../routes/router/Routes';
 import { store } from '../stores/store';
+import { User, UserFormValues } from '../models/user';
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => setTimeout(resolve, delay));
@@ -73,8 +74,16 @@ const Items = {
   delete: (id: string) => requests.del<void>(`/groceryitems/${id}`),
 };
 
+const Account = {
+  current: () => requests.get<User>('/account'),
+  login: (user: UserFormValues) => requests.post<User>('/account/login', user),
+  register: (user: UserFormValues) =>
+    requests.post<User>('/account/register', user),
+};
+
 const agent = {
   Items,
+  Account,
 };
 
 export default agent;

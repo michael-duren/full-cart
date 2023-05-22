@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import AddItemForm from '../forms/AddItemForm';
-import { Category } from '../../utils/models/grocery';
+import { Category } from '../../models/grocery';
 
 interface AddItemModalProps {
   isOpen: boolean;
