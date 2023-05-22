@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
 
 export default function NavBar() {
   return (
-    <header className="flex mb-10 justify-between ">
+    <header className="flex p-4 justify-between ">
       <h1 className="text-lg">
         <div>
           <Link to={'/'}>
