@@ -23,7 +23,7 @@ export default function Footer() {
           return (
             <a key={link.name} href={link.link}>
               <li className="hover:text-gray-700">
-                {createElement(link.icon, { size: 20 })}
+                {createElement(link.icon, { size: 25 })}
               </li>
             </a>
           );
