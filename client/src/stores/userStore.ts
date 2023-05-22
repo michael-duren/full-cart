@@ -15,8 +15,9 @@ export default class UserStore {
 
   login = async (creds: UserFormValues) => {
     try {
-      const user = agent.Account.login(creds);
+      const user = await agent.Account.login(creds);
       console.log(user);
+      return;
     } catch (error) {
       throw error;
     }
