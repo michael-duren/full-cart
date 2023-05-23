@@ -4,7 +4,9 @@ import { Category } from '../../models/grocery';
 import { observer } from 'mobx-react-lite';
 import PrimaryButton from '../buttons/PrimaryButton';
 import SecondaryButton from '../buttons/SecondaryButton';
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import Input from './generic/Input';
 
 interface AddItemProps {
   closeModal: () => void;
@@ -25,52 +27,26 @@ export default observer(function AddItemForm({
     category: '',
   };
 
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
+    price: Yup.string().required('Price is required'),
+  });
+
   const [itemData, setItemData] = useState(initialState);
-
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
-  //   setItemData({ ...itemData, [name]: value });
-  // };
-
-  // const handleSubmit = async (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   await createItem({ ...itemData, category: category });
-  // };
 
   return (
     <>
       <Formik
+        validationSchema={validationSchema}
         enableReinitialize
         initialValues={itemData}
         onSubmit={async (values) => await createItem({ ...values, category })}
       >
-        {({ values: itemData, handleChange, handleSubmit }) => (
-          <form onSubmit={(event) => handleSubmit(event)}>
+        {({ handleSubmit }) => (
+          <Form onSubmit={(event) => handleSubmit(event)}>
             <div className="flex mb-8 space-y-4 items-center justify-center flex-col   mt-2 ">
-              <div className="flex flex-col">
-                <input
-                  className="border-2 p-2 rounded-md"
-                  onChange={handleChange}
-                  value={itemData.name}
-                  placeholder="Name"
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                />
-              </div>
-              <div className="flex flex-col">
-                <input
-                  className="border-2 p-2 rounded-md"
-                  onChange={handleChange}
-                  value={itemData.price}
-                  type="number"
-                  placeholder="0.00"
-                  name="price"
-                  id="price"
-                  required
-                />
-              </div>
+              <Input name="name" type="text" placeholder="Name" label="Name" />
+              <Input type="number" placeholder="0.00" name="price" />
             </div>
 
             <div className=" flex items-center justify-center gap-4 mt-4">
@@ -81,7 +57,7 @@ export default observer(function AddItemForm({
                 Cancel
               </SecondaryButton>
             </div>
-          </form>
+          </Form>
         )}
       </Formik>
     </>

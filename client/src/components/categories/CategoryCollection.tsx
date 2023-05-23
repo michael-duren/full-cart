@@ -16,7 +16,7 @@ export default observer(function CategoryColection({
   const { listStore } = useStore();
   const { categoryItems } = listStore;
   const { category, CategoryIcon } = categoryCollection;
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [openAddItem, setIsOpenAddItem] = useState(false);
 
   const items = categoryItems.filter((item) => item.category === category);

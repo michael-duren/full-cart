@@ -9,7 +9,7 @@ import LogoSpinner from '../../components/spinners/LogoSpinner';
 
 export default observer(function NewList() {
   const { listStore } = useStore();
-  const { loadingInitial } = listStore;
+  const { loadingInitial, loading } = listStore;
 
   useEffect(() => {
     listStore.loadItems();
@@ -17,7 +17,7 @@ export default observer(function NewList() {
 
   dayjs.extend(localizedFormat);
 
-  if (loadingInitial) {
+  if (loadingInitial || loading) {
     return <LogoSpinner />;
   }
 
