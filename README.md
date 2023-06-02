@@ -12,21 +12,21 @@ A app designed to allow users to keep track of their grocery lists, trips, and e
 ## Setup
 
 ```
-	git clone https://github.com/michael-duren/full-cart.git
-	cd full-cart/client
-	npm install
+git clone https://github.com/michael-duren/full-cart.git
+cd full-cart/client
+npm install
 ```
 
 ### Running Server
 
 ```
-	cd API
-	dotnet run
+cd API
+dotnet run
 ```
 
 ### Running client
 
 ```
-	cd client
-	npm run dev
+cd client
+npm run dev
 ```
