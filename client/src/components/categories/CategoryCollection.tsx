@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CategoryCollection } from '../../models/grocery';
 import ItemInstance from './ItemInstance';
 import { TbCarrot, TbCarrotOff } from 'react-icons/tb';
@@ -20,6 +20,9 @@ export default observer(function CategoryColection({
   const [openAddItem, setIsOpenAddItem] = useState(false);
 
   const items = categoryItems.filter((item) => item.category === category);
+  useEffect(() => {
+    items.length > 0 ? setIsOpen(true) : setIsOpen(false);
+  }, []);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
